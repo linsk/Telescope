@@ -9,10 +9,8 @@ standard-app-packages
 backbone
 accounts-base
 accounts-password
-accounts-twitter
 spiderable
 email
-accounts-facebook
 
 # Atmosphere Packages
 
@@ -56,7 +54,6 @@ telescope-i18n
 telescope-email
 telescope-update-prompt
 telescope-notifications
-telescope-kadira
 
 
 npm-container
@@ -65,10 +62,10 @@ djedi:sanitize-html
 rajit:bootstrap3-datepicker
 telescope-update-prompt
 telescope-notifications
-telescope-kadira
 
 # Accounts Templates
 service-configuration
 accounts-ui
 splendido:accounts-templates-unstyled
+kenton:accounts-sandstorm
 
