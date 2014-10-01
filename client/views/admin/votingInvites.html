@@ -1,0 +1,39 @@
+<template name="votingInvites">
+    <div class="grid grid-module">
+      <div class="user-table grid-block">
+        <h2>Invites</h2>
+        <div class="filter-sort">
+          <p class="filter">
+            <span>{{i18n "Filter by"}}: </span>
+            <a class="{{activeClass 'all'}}" href="{{filterBy 'all'}}">{{i18n "All"}}</a>
+            <a class="{{activeClass 'accepted'}}" href="{{filterBy 'accepted'}}">{{i18n "Accepted"}}</a>
+            <a class="{{activeClass 'unaccepted'}}" href="{{filterBy 'unaccepted'}}">{{i18n "Unaccepted"}}</a>
+          </p>
+          <p class="sort">
+            <span>{{i18n "Sort by"}}: </span>
+            <a class="{{activeClass 'voteWeight'}}" href="{{sortBy 'voteWeight'}}">{{i18n "VoteWeight"}}</a>
+          </p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <td>{{i18n "Email"}}</td>
+              <td>{{i18n "VoteWeight"}}</td>
+              <td>{{i18n "Accepted?"}}</td>
+              <td>{{i18n "InviteUrl"}}</td>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each invites}}
+            <tr class="invite">
+              <td>{{invitedUserEmail}}</td>
+              <td>{{voteWeight}}</td>
+              <td>{{accepted}}</td>
+              <td>/blah/{{_id}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+</template>

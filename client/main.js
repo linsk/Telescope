@@ -19,13 +19,17 @@ adminNav = adminNav.concat([
     label: 'Users'
   },
   {
+    route: 'votingInvites',
+    label: 'Invites'
+  },
+  {
     route: 'settings',
     label: 'Settings'
   },
   {
     route: 'toolbox',
     label: 'Toolbox'
-  }   
+  }
 ]);
 
 // Sort postModules array position using modulePositions as index
