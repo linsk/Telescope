@@ -1,7 +1,8 @@
 <template name="votingInvites">
     <div class="grid grid-module">
       <div class="user-table grid-block">
-        <h2>Invites</h2>
+        <h2 id="votingInvitesHeader">Invites</h2>
+        <button id="uploadCsv" type="button" class="btn btn-default">Upload CSV data</button>
         <div class="filter-sort">
           <p class="filter">
             <span>{{i18n "Filter by"}}: </span>
@@ -28,7 +29,7 @@
             <tr class="invite">
               <td>{{invitedUserEmail}}</td>
               <td>{{voteWeight}}</td>
-              <td>{{accepted}}</td>
+              <td>{{#if accepted}}<i class="icon-check"></i>{{/if}}</td>
               <td>/blah/{{_id}}</td>
             </tr>
             {{/each}}
