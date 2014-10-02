@@ -12,7 +12,7 @@ categorySchema = new SimpleSchema({
   },
   name: {
     type: String
-  },    
+  },
 });
 
 Categories = new Meteor.Collection("categories", {
@@ -20,7 +20,7 @@ Categories = new Meteor.Collection("categories", {
 });
 
 // category post list parameters
-viewParameters.category = function (terms) { 
+viewParameters.category = function (terms) {
   return {
     find: {'categories.slug': terms.category},
     options: {sort: {sticky: -1, score: -1}}
@@ -32,7 +32,7 @@ postHeading.push({
   template: 'postCategories',
   order: 3
 });
-  
+
 // push "categoriesMenu" template to primaryNav
 primaryNav.push('categoriesMenu');
 
@@ -78,5 +78,5 @@ Meteor.startup(function () {
 });
 
 getCategoryUrl = function(slug){
-  return getSiteUrl()+'category/'+slug;
+  return '/category/'+slug;
 };
