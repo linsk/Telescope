@@ -9,6 +9,8 @@ Template[getTemplate('voteInvitation')].events({
     Meteor.call('acceptInvitation', this._id, function (err) {
       if (err) {
         throwError(err.reason);
+      } else {
+        Router.go('posts_default');
       }
     });
   }
