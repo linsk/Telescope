@@ -24,4 +24,4 @@ settings.json
 scratch
 
 .deploy
-.deploy/*
+.deploy/*.meteor-spk
