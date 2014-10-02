@@ -10,6 +10,7 @@ Template[getTemplate('voteInvitation')].events({
       if (err) {
         throwError(err.reason);
       } else {
+        window.parent.postMessage({'setPath': '/'}, '*')
         Router.go('posts_default');
       }
     });
