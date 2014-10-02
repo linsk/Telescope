@@ -30,5 +30,13 @@ Template[getTemplate('post_item')].helpers({
   },
   moduleClass: function () {
     return camelToDash(this.template) + ' ' + this.position + ' cell';
+  },
+  isPorted: function () {
+    var res = _.where(this.categories, {name: "Ported"});
+    return res.length > 0;
+  },
+  isInProgress: function () {
+    var res = _.where(this.categories, {name: "In-Progress"});
+    return res.length > 0;
   }
 });
