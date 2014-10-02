@@ -1,0 +1,18 @@
+<template name="voteInvitation">
+  <div id="voteInvitation">
+    <p>
+      Welcome {{invitedUserEmail}}<br /><br />
+      You contributed ${{voteWeight}}<br />
+    </p>
+
+    {{#if isUserInvited}}
+    <div class="error">You've already accepted an invitation</div>
+    {{else}}
+      {{#if accepted}}
+      <div class="error">This invitation has already been used</div>
+      {{else}}
+      <button id="acceptInvitation">Accept Invitation</button>
+      {{/if}}
+    {{/if}}
+  </div>
+</template>

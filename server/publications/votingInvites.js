@@ -6,3 +6,8 @@ Meteor.publish('allVotingInvites', function(filterBy, sortBy, limit) {
   }
   return [];
 });
+
+
+Meteor.publish('voteInvitation', function(id) {
+  return VotingInvites.find({_id: id});
+});

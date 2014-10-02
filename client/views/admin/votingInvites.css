@@ -2,7 +2,8 @@
   display: inline-block;
 }
 
-#uploadCsv {
+.invitationButton {
   float: right;
   display: inline-block;
+  margin-left: 5px;
 }

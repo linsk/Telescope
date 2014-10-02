@@ -24,7 +24,7 @@ Template[getTemplate('votingInvites')].events({
       reader.onload = function(e) {
         return Meteor.call('uploadInvitationsCsv', reader.result, function(err) {
           if (err) {
-            console.log(err);
+            throwError(err.reason);
           } else {
             console.log('success');
           }

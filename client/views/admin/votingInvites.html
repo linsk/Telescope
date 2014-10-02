@@ -2,7 +2,8 @@
     <div class="grid grid-module">
       <div class="user-table grid-block">
         <h2 id="votingInvitesHeader">Invites</h2>
-        <button id="uploadCsv" type="button" class="btn btn-default">Upload CSV data</button>
+        <button id="sendInvitationEmails" type="button" class="btn btn-default invitationButton">Send Invitation Emails</button>
+        <button id="uploadCsv" type="button" class="btn btn-default invitationButton">Upload CSV data</button>
         <div class="filter-sort">
           <p class="filter">
             <span>{{i18n "Filter by"}}: </span>
@@ -30,7 +31,7 @@
               <td>{{invitedUserEmail}}</td>
               <td>{{voteWeight}}</td>
               <td>{{#if accepted}}<i class="icon-check"></i>{{/if}}</td>
-              <td>/blah/{{_id}}</td>
+              <td>/voteInvitation/{{_id}}</td>
             </tr>
             {{/each}}
           </tbody>

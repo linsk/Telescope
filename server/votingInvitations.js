@@ -21,5 +21,19 @@ Meteor.methods({
 
       VotingInvites.upsert({invitedUserEmail: row.invitedUserEmail}, {$set: row})
     });
+  },
+
+  acceptInvitation: function (id) {
+    var invite = VotingInvites.findOne({_id: id});
+
+    if (invite.accepted) {
+      throw new Meteor.Error(500, "Invite has already been used");
+    }
+
+    Meteor.users.update({_id: Meteor.userId()}, {$set: {
+      voteWeight: invite.voteWeight,
+      isInvited: true
+    }});
+    VotingInvites.update({_id: id}, {$set: {accepted: true}});
   }
 });
