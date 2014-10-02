@@ -135,7 +135,7 @@ Template[getTemplate('post_edit')].events({
 
       // PostedAt
 
-      if(adminProperties.status == STATUS_APPROVED){  
+      if(adminProperties.status == STATUS_APPROVED){
 
         var $postedAtDate = $('#postedAtDate');
         var $postedAtTime = $('#postedAtTime');
@@ -162,6 +162,12 @@ Template[getTemplate('post_edit')].events({
           Meteor.call('setPostedAt', post);
         }
       }
+
+      // Time estimate
+      var estimate = $('#estimate').val();
+      if(!!estimate){
+        Meteor.call('setEstimate', post._id, estimate);
+      }
     }
 
     // ------------------------------ Callbacks ------------------------------ //
@@ -175,7 +181,7 @@ Template[getTemplate('post_edit')].events({
 
     // ------------------------------ Update ------------------------------ //
 
-    if (properties) {      
+    if (properties) {
       Posts.update(post._id,{
         $set: properties
       }, function(error){
@@ -198,7 +204,7 @@ Template[getTemplate('post_edit')].events({
     var post = this;
 
     e.preventDefault();
-    
+
     if(confirm("Are you sure?")){
       Router.go("/");
       Meteor.call("deletePostById", post._id, function(error) {

@@ -68,7 +68,7 @@
               <label class="radio inline">
                 <input id="status_approved" type="radio" value="2" name="status" {{hasStatusApproved}} /> {{i18n "Approved"}}
               </label>
-              <label class="radio inline">  
+              <label class="radio inline">
                 <input id="status_rejected" type="radio" value="3" name="status" {{hasStatusRejected}} /> {{i18n "Rejected"}}
               </label>
             </div>
@@ -82,6 +82,10 @@
               <label class="control-label post-form-time">{{i18n "Posted Time"}}</label>
               <div class="controls"><input id="postedAtTime" type="text" value="{{postedAtTime}}" /></div>
             </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label post-form-estimate">{{i18n "Estimate"}}</label>
+            <div class="controls"><input id="estimate" type="text" value="{{estimate}}" /></div>
           </div>
         {{/if}}
         <div class="form-actions">

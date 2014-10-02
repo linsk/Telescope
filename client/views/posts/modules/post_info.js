@@ -9,7 +9,7 @@ Template[getTemplate('postInfo')].helpers({
     return getAuthorName(this);
   },
   ago: function(){
-    // if post is approved show submission time, else show creation time. 
+    // if post is approved show submission time, else show creation time.
     time = this.status == STATUS_APPROVED ? this.postedAt : this.createdAt;
     return moment(time).fromNow();
   },
@@ -18,5 +18,11 @@ Template[getTemplate('postInfo')].helpers({
     var user = Meteor.users.findOne(this.userId, {reactive: false});
     if(user)
       return getProfileUrl(user);
+  },
+  calcEstimate: function(){
+    if (this.estimate)
+      return i18n.t("Estimated ") + this.estimate;
+    else
+      return i18n.t("No estimate");
   }
 });

@@ -10,7 +10,7 @@ postSchemaObject = {
   postedAt: {
     type: Date,
     optional: true
-  },    
+  },
   title: {
     type: String,
     label: "Title"
@@ -85,6 +85,10 @@ postSchemaObject = {
   userId: {
     type: String, // XXX
     optional: true
+  },
+  estimate: {
+    type: String,
+    optional: true
   }
 };
 
@@ -129,7 +133,7 @@ getPostProperties = function(post) {
     thumbnailUrl: post.thumbnailUrl,
     linkUrl: !!post.url ? getOutgoingUrl(post.url) : getPostPageUrl(post._id)
   };
-  
+
   if(post.url)
     p.url = post.url;
 
@@ -176,7 +180,7 @@ Meteor.methods({
         postInterval = Math.abs(parseInt(getSetting('postInterval', 30))),
         maxPostsPer24Hours = Math.abs(parseInt(getSetting('maxPostsPerDay', 30))),
         postId = '';
-    
+
 
     // ------------------------------ Checks ------------------------------ //
 
@@ -226,9 +230,9 @@ Meteor.methods({
       inactive: false
     };
 
-    // UserId    
+    // UserId
     if(isAdmin(Meteor.user()) && !!post.userId){ // only let admins post as other users
-      properties.userId = post.userId; 
+      properties.userId = post.userId;
     }
 
     // Status
@@ -236,7 +240,7 @@ Meteor.methods({
     if(isAdmin(Meteor.user()) && !!post.status){ // if user is admin and a custom status has been set
       properties.status = post.status;
     }else{ // else use default status
-      properties.status = defaultPostStatus; 
+      properties.status = defaultPostStatus;
     }
 
     // CreatedAt
@@ -286,7 +290,7 @@ Meteor.methods({
   setPostedAt: function(post, customPostedAt){
 
     var postedAt = new Date(); // default to current date and time
-        
+
     if(isAdmin(Meteor.user()) && typeof customPostedAt !== 'undefined') // if user is admin and a custom datetime has been set
       postedAt = customPostedAt;
 
@@ -328,8 +332,14 @@ Meteor.methods({
     // decrement post count
     var post = Posts.findOne({_id: postId});
     if(!Meteor.userId() || !canEditById(Meteor.userId(), post)) throw new Meteor.Error(606, 'You need permission to edit or delete a post');
-    
+
     Meteor.users.update({_id: post.userId}, {$inc: {postCount: -1}});
     Posts.remove(postId);
-  }
+  },
+  setEstimate: function(postId, estimate){
+    if (!isAdmin(Meteor.user()))
+      throw new Meteor.Error(403, "Not an admin");
+
+    Posts.update(postId, {$set: {estimate: estimate}});
+  },
 });
