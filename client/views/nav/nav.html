@@ -17,6 +17,11 @@
 
     {{#if hasPrimaryNav}}
       <ul class="nav primary-nav desktop-nav {{dropdownClass}} header-module desktop-only">
+        <li>
+          <div class="header-submodule views-menu">
+            <a href="{{pathFor "posts_top"}}">Apps</a>
+          </div>
+        </li>
         {{#each primaryNav}}
           <li>
             {{> UI.dynamic template=getTemplate}}
