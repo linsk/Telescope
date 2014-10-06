@@ -38,5 +38,9 @@ Template[getTemplate('post_item')].helpers({
   isInProgress: function () {
     var res = _.where(this.categories, {name: "In-Progress"});
     return res.length > 0;
+  },
+  isUpdating: function () {
+    var res = _.where(this.categories, {name: "Updating"});
+    return res.length > 0;
   }
 });

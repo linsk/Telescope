@@ -11,5 +11,10 @@ Meteor.startup(function () {
       order: 2,
       slug: slugify('Ported')
     });
+    Categories.insert({
+      name: 'Updating',
+      order: 3,
+      slug: slugify('Updating')
+    });
   }
 });
