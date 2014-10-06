@@ -2,10 +2,10 @@
   background-color: #2E8B57;
 }
 
-.in-progress {
+.in-progress, .updating {
   background-color: #FFD700;
 }
 
-.updating {
-  background-color: #FFD700;
+.post-share > a.share-link {
+  color: #a3d06d;
 }
