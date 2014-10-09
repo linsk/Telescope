@@ -16,5 +16,10 @@ Meteor.startup(function () {
       order: 3,
       slug: slugify('Updating')
     });
+    Categories.insert({
+      name: 'None',
+      order: 100,
+      slug: slugify('None')
+    });
   }
 });
