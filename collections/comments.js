@@ -87,16 +87,26 @@ Comments.allow({
   remove: canEditById
 });
 
+var renderer = new marked.Renderer();
+renderer.link = function(href, title, text) {
+  var out = '<a target="_blank" href="' + href + '"';
+  if (title) {
+    out += ' title="' + title + '"';
+  }
+  out += '>' + text + '</a>';
+  return out;
+};
+
 Comments.before.insert(function (userId, doc) {
   if(Meteor.isServer)
-    doc.htmlBody = sanitize(marked(doc.body));
+    doc.htmlBody = sanitize(marked(doc.body, {renderer: renderer}));
 });
 
 Comments.before.update(function (userId, doc, fieldNames, modifier, options) {
   // if body is being modified, update htmlBody too
   if (Meteor.isServer && modifier.$set && modifier.$set.body) {
     modifier.$set = modifier.$set || {};
-    modifier.$set.htmlBody = sanitize(marked(modifier.$set.body));
+    modifier.$set.htmlBody = sanitize(marked(modifier.$set.body, {renderer: renderer}));
   }
 });
 
@@ -112,7 +122,7 @@ Meteor.methods({
     // check that user can comment
     if (!user || !canComment(user))
       throw new Meteor.Error(i18n.t('You need to login or be invited to post new comments.'));
-    
+
     // check that user waits more than 15 seconds between comments
     if(!this.isSimulation && (timeSinceLastComment < commentInterval))
       throw new Meteor.Error(704, i18n.t('Please wait ')+(commentInterval-timeSinceLastComment)+i18n.t(' seconds before commenting again'));
@@ -120,7 +130,7 @@ Meteor.methods({
     // Don't allow empty comments
     if (!text)
       throw new Meteor.Error(704,i18n.t('Your comment is empty.'));
-          
+
     var comment = {
       postId: postId,
       body: text,
@@ -133,7 +143,7 @@ Meteor.methods({
       score: 0,
       author: getDisplayName(user)
     };
-    
+
     if(parentCommentId)
       comment.parentCommentId = parentCommentId;
 
